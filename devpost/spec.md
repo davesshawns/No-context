@@ -47,7 +47,7 @@ All versions checked against npm on 2026-10-24.
 | **html-to-image** | 1.11.13 | Learner accepted recommendation: small, dependency-free DOM → PNG. Tradeoff: fonts and gradients can need care; last release April 2025 — stable but not actively developed. | https://github.com/bubkoo/html-to-image |
 | **@fontsource-variable/space-grotesk**, **@fontsource-variable/inter** | 5.3.x | Implementation detail derived from "bold clean typography": fonts are bundled with the app (no Google Fonts link), so export can embed them reliably and the app works offline. | https://fontsource.org |
 
-JavaScript only (no TypeScript). Lint with the ESLint config that ships with the Vite template.
+JavaScript only (no TypeScript). Lint with oxlint, which ships with the current Vite React template.
 
 **Verify early in the build:** html-to-image correctly embeds the bundled fonts and the purple gradient in the exported PNG.
 
@@ -163,7 +163,7 @@ no-context/
 ├── index.html                 # Vite entry; title, meta description, favicon
 ├── package.json
 ├── vite.config.js             # react() + tailwindcss() plugins
-├── eslint.config.js           # from the Vite template
+├── .oxlintrc.json             # oxlint config from the Vite template
 ├── vercel.json                # SPA rewrite (only needed if deployed)
 ├── public/
 │   └── favicon.svg            # NO CONTEXT mark

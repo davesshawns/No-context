@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router'
 import { FileQuestion } from 'lucide-react'
 import PhonePreview from '../components/lab/PhonePreview.jsx'
+import ExportCard from '../components/lab/ExportCard.jsx'
+import LabToolbar from '../components/lab/LabToolbar.jsx'
+import { exportChat } from '../lib/exportChat.js'
+import { useToast } from '../state/ToastContext.jsx'
 import FictionalBadge from '../components/ui/FictionalBadge.jsx'
 import Button from '../components/ui/Button.jsx'
 import { createBlank, createFromScenario } from '../lib/creations.js'
@@ -23,6 +27,18 @@ export default function ChatLabPage() {
 
 function ChatLab({ id, scenarioId }) {
   const [chat] = useState(() => resolveInitial(id, scenarioId))
+  const exportRef = useRef(null)
+  const toast = useToast()
+
+  async function handleExport() {
+    try {
+      await exportChat(exportRef.current, chat)
+      toast('Saved to your downloads')
+    } catch (err) {
+      console.warn('Export failed', err)
+      toast('Export failed — try again', 'error')
+    }
+  }
 
   if (!chat) {
     return (
@@ -48,10 +64,14 @@ function ChatLab({ id, scenarioId }) {
           <FictionalBadge />
         </div>
         <p className="mt-2 text-ink-300">{scenario ? scenario.premise : 'A blank chat. Your drama, your rules.'}</p>
+        <div className="mt-6">
+          <LabToolbar canExport={chat.messages.length > 0} onExport={handleExport} />
+        </div>
       </section>
       <aside className="lg:sticky lg:top-24 lg:self-start">
         <PhonePreview chat={chat} />
       </aside>
+      <ExportCard ref={exportRef} chat={chat} />
     </div>
   )
 }

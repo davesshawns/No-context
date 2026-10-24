@@ -4,9 +4,11 @@ import DiscoverPage from './pages/DiscoverPage.jsx'
 import ChatLabPage from './pages/ChatLabPage.jsx'
 import CreationsPage from './pages/CreationsPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
+import { ToastProvider } from './state/ToastContext.jsx'
 
 export default function App() {
   return (
+    <ToastProvider>
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
@@ -19,5 +21,6 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </ToastProvider>
   )
 }

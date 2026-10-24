@@ -11,7 +11,7 @@ Browser verification uses headless Google Chrome (`/usr/bin/google-chrome`) driv
 
 ## Slices
 
-- [ ] **1. Pick a scenario and see it as a fictional chat**
+- [x] **1. Pick a scenario and see it as a fictional chat**
   Becomes usable: The app runs with NO CONTEXT branding and navigation; Discover shows all 8 written scenarios with working category filters; "Use scenario" opens Chat Lab showing that scenario's conversation in the phone preview; "Create a chat" opens an empty chat.
   Why now: This is the unique kernel — scenario-first — so it comes first. Bootstrapping (Vite, Tailwind v4 tokens, fonts, router) lives inside it, and it establishes the design system every later slice reuses.
   PRD ref: `prd.md > The Core Journey` (steps 1–3), `prd.md > Discover`, `prd.md > Starter Scenarios`, `prd.md > Chat Lab — Live Preview`, `prd.md > Look and Feel`
@@ -83,3 +83,5 @@ Reflection:
 Activity mode:
 
 ## Revisions
+- Lint uses **oxlint** (`.oxlintrc.json`), not ESLint — the current `create-vite` React template ships oxlint; `npm run lint` is unchanged in purpose.
+- html-to-image was installed in slice 1 alongside the other dependencies rather than in slice 2 — one install step; no behaviour change.
