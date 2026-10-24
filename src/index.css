@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* NO CONTEXT design tokens — see devpost/spec.md > Look and Feel */
+@theme {
+  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink-950: #0a0a0c;
+  --color-ink-900: #111114;
+  --color-ink-850: #16161b;
+  --color-ink-800: #1c1c22;
+  --color-ink-700: #2a2a32;
+  --color-ink-600: #3a3a44;
+  --color-ink-400: #8a8a96;
+  --color-ink-300: #b4b4be;
+  --color-paper: #f4f4f0;
+
+  --color-lime: #c6ff00;
+  --color-lime-soft: #e3ff80;
+  --color-violet: #7c3aed;
+  --color-fuchsia: #c026d3;
+
+  --animate-rise: rise 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-fade: fade 0.25s ease-out both;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--color-ink-950);
+  }
+  body {
+    @apply min-h-dvh bg-ink-950 font-sans text-paper antialiased;
+  }
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-ink-950);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink-600) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
