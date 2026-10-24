@@ -52,3 +52,26 @@ export function nextColor(participants) {
   const used = new Set(participants.map((p) => p.color))
   return COLOR_KEYS.find((k) => !used.has(k)) ?? 'slate'
 }
+
+// "11:58 PM" + 1 minute → "11:59 PM". Anything unparseable (e.g. "Mar 3") is kept as-is.
+export function nextTime(time) {
+  const match = /(\d{1,2}):(\d{2})\s*(AM|PM)/i.exec(time ?? '')
+  if (!match) {
+    if (time) return time
+    return new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+  }
+  let h = Number(match[1]) % 12
+  if (match[3].toUpperCase() === 'PM') h += 12
+  const total = (h * 60 + Number(match[2]) + 1) % (24 * 60)
+  const hh = Math.floor(total / 60)
+  const mm = String(total % 60).padStart(2, '0')
+  return `${hh % 12 || 12}:${mm} ${hh < 12 ? 'AM' : 'PM'}`
+}
+
+// Rotate to the next participant after whoever spoke last.
+export function nextSender(chat) {
+  const ids = chat.participants.map((p) => p.id)
+  const last = chat.messages.at(-1)?.senderId
+  const i = ids.indexOf(last)
+  return ids[(i + 1) % ids.length] ?? ids[0]
+}

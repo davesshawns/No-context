@@ -21,7 +21,7 @@ Browser verification uses headless Google Chrome (`/usr/bin/google-chrome`) driv
   Learner check: Open the app, filter by a category, tap "Use scenario" on one you like, and see the chat in the phone. Do the jokes land?
   Commit: `Discover scenarios and preview them in Chat Lab`
 
-- [ ] **2. Export the chat as a PNG**
+- [x] **2. Export the chat as a PNG**
   Becomes usable: "Export PNG" downloads a frame-less, branded, fictional-labelled image of the whole conversation; disabled for empty chats; success/failure toast.
   Why now: html-to-image font/gradient fidelity is the project's main technical risk (`spec.md > Important Failure Modes`). Proving it before building the editor means bad news arrives early, and the demo's finish line exists from slice 2.
   PRD ref: `prd.md > Image Export`

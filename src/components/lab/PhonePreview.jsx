@@ -12,6 +12,7 @@ export default function PhonePreview({ chat }) {
   const scroller = useRef(null)
   const mounted = useRef(false)
   const count = chat.messages.length
+  const initialCount = useRef(count) // only bubbles added after opening animate in
 
   // Keep the newest message in view: jump on open, glide as the chat grows.
   useEffect(() => {
@@ -50,7 +51,7 @@ export default function PhonePreview({ chat }) {
                 <p className="text-sm text-ink-400">Add one to start the drama.</p>
               </div>
             ) : (
-              <MessageList chat={chat} />
+              <MessageList chat={chat} animateFrom={initialCount.current} />
             )}
           </div>
           {/* composer (decorative) */}
