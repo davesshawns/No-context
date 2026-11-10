@@ -31,7 +31,7 @@ Browser verification uses headless Google Chrome (`/usr/bin/google-chrome`) driv
   Learner check: Open a scenario in Chat Lab, tap Export PNG, and open the downloaded image. Would you post it?
   Commit: `Export chats as branded PNG images`
 
-- [ ] **3. Edit the conversation and participants live**
+- [x] **3. Edit the conversation and participants live**
   Becomes usable: Edit chat name; add/edit/delete messages (sender, text, time); customize participants (name, initials, colour, "Me", add/remove with confirmation); toggle "Seen"; New and Reset; mobile Edit/Preview toggle. The preview updates instantly.
   Why now: Completes the core loop — scenario → customize → export — on top of a proven export path, so the early hands-on check can shape everything left.
   PRD ref: `prd.md > Chat Lab — Editing Messages`, `prd.md > Chat Lab — Participants`, `prd.md > Chat Lab — New and Reset`, `prd.md > States and Boundaries`
